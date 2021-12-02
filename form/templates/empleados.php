@@ -39,7 +39,7 @@ include_once "../../php/validation.php";
       <h1>Estamos Enfocados</h1>
     </div> 
     <div class="profile">
-      <h1>Empleados:</h1><br>
+      <h1>Empleados :</h1><br>
       <table class="empleadost" cellspacing="10px" width="500px">
       <tr>
         <strong>
@@ -75,6 +75,48 @@ include_once "../../php/validation.php";
  }
       ?>
     </table>
+    <h1>Estado Encuestas :</h1>
+    <table class="empleadost" cellspacing="10px" width="500px">
+    <tr>
+      <th><center><h2>Encuesta:</h2></center></th><th><center><h2>Estado:</h2></center></th>
+    </tr>
+    <tr>
+      <td><center><p>Avanzando Contigo</p></center></td>
+      <?php
+      $consulta= "SELECT * FROM estado_encuestas";
+      $resultado= $conexion ->query ($consulta);
+      $si= $resultado -> fetch();
+
+        if($si["avanzando"]==1){
+          $estado="v";
+        }
+        else{
+          $estado="r";
+        }
+
+        if($si["estamos"]==1){
+          $estadoe="v";
+        }
+        else{
+          $estadoe="r";
+        }
+        echo'<td><center><div class="'.$estado.'""></div></center></td>
+    </tr>
+    <tr>
+      <td><center><p>Estamos Enfocados</p></center></td>
+      <td><center><div class="'.$estadoe.'"></div></center></td>
+      ';
+      ?>
+    </tr>
+    </table>
+    <h2>Invertir Estado :</h2>
+    <form method="post" action="../../php/estado_encuestas.php">
+      <select name="encuesta">
+        <option value="avanzando">Avanzando Contigo</option>
+        <option value="estamos">Estamos Enfocados</option>
+      </select>
+      <input type="submit" value="Cambiar" class="redirigir">
+    </form>
     </div>
   </div>
 </div>

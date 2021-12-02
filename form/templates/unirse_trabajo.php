@@ -31,7 +31,7 @@ echo'<body style="background: linear-gradient(to right, #fff, '.$a.')">';
     <nav>
          <a id="profile" data-tooltip="Perfil"onclick="location.href='perfil.php'"><i class="fa fa-user"></i></a>
       <a id="profile"data-tooltip="Trabajos en equipo" class="active"><i class="fa fa-address-book"  ></i></a>
-      <a id="privacy" data-tooltip="Avanzando contigo"onclick="location.href='evanzando_contigo.php'"><i class="fa fa-tasks"></i></a>
+      <a id="privacy" data-tooltip="Avanzando contigo"onclick="location.href='avanzando_contigo.php'"><i class="fa fa-tasks"></i></a>
       <a id="payment"data-tooltip="Estamos enfocados" onclick="location.href='estamos_enfocados.php'"><i class="fa fa-tasks"></i></a>
      <a id="subscription" onclick="location.href='../../php/cerrar.php';" data-tooltip="Cerrar sesion" class="iconoss"><i class="fa fa-window-close"></i></a>
     </nav>
@@ -71,15 +71,17 @@ echo'<body style="background: linear-gradient(to right, #fff, '.$a.')">';
                 $vacio=0;
                 
                 echo'
-                <option value="'.$si["id"].'">'.$si["trabajo"].'</option>';
+                    <option value="'.$si["id"].'">'.$si["trabajo"].'</option>';
                 
                 }
             }
             if($vacio == 1){
-              echo'<option>No Hay Trabajos Disponibles</option></select>';
+              echo'
+                  <option>No Hay Trabajos Disponibles</option></select>';
             }
             else{
-              echo'</select><br><br><input type="submit" class="enviar" value="Entrar">';
+              echo'
+                  </select><br><br><input type="submit" class="enviar" value="Entrar">';
             }
 
         ?>
@@ -122,6 +124,7 @@ if ($data['resultado'] >25){
 }
 
 $_SESSION['casco']=$casco;
+
 echo '<div class="profile"><h1 class="unu">Tu casco actual</h1></div><br>';
 echo '<img src='.$_SESSION['casco'].' class="imgsita">';
   

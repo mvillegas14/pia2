@@ -27,6 +27,7 @@ include_once "../../php/validation.php";
     <nav>
       <a id="profile" data-tooltip="Perfil"class="active"><i class="fa fa-user"></i></a>
       <a id="profile"  data-tooltip="Trabajos"onclick="location.href='trabajos_index.php'"  ><i class="fa fa-tasks"  ></i></a><br>
+
       <a id="privacy" data-tooltip="Empleados"onclick="location.href='empleados.php'"><i class="fa fa-address-book"></i></a>
      <a id="subscription" onclick="location.href='../../php/cerrar.php';" data-tooltip="Cerrar sesion" class="iconoss"><i class="fa fa-window-close"></i></a>
     </nav>

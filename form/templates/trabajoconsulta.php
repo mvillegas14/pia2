@@ -23,6 +23,11 @@ include_once "../../php/validation.php";
     <a type="button" class="restablecer"><i class="fa fa-pause" aria-hidden="true"></i></a><br>
     <p class="tamaño-actual"></p>
 </div>
+<div class="container3">
+  <img src="../../img/cascos.png" class="cascosgod">
+  
+  
+</div>
 <div class="container">
   <div id="logo"><h1 class="logo"></h1></div>
   <div class="leftbox">
@@ -78,17 +83,15 @@ include_once "../../php/validation.php";
       .' '.
         $si3["apellido"]
       .'</p></center></td>
-      </tr>';
+      </tr></div>';
     }
       ?>
     </div>
   </div>
 </div>
-<div class="container3">
-  <img src="../../img/cascos.png" class="cascosgod">
-  
-  
 </div>
+
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="{{ url_for('static',filename='script.js')}}"></script>
 <script type="text/javascript">
 function tamanoLetra() {

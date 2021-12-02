@@ -2,15 +2,27 @@
 session_start();
 include_once "../../php/validation.php";
 include_once "../../php/conexion.php";
+
 $id=$_SESSION["id_usuario"];
+$_SESSION['if']=1;
+$_SESSION['sumt']="toquelomifai";
+
 $consulta="SELECT * FROM resultados WHERE id_trabajador = '$id'";
 $resultado=$conexion ->query($consulta);
 $data=$resultado -> fetch();
-$_SESSION['if']=1;
-$_SESSION['sumt']="toquelomifai";
+
+$consulta1="SELECT * FROM estado_encuestas";
+$resultado1=$conexion ->query($consulta1);
+$data1=$resultado1 -> fetch();
+
+if($data1['estamos']==0){
+  header("location:estamos2.php");
+}
+
 if($data['solved_enfocados']==1){
   header("location:estamos_enfocados1.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en" >

@@ -46,22 +46,17 @@ echo'<body style="background: linear-gradient(to right, #fff, '.$a.')">';
       <h1>Trabajos En Equipo</h1>
       <?php
       require_once "../../php/conexion.php";
-
-      $consulta31="SELECT * FROM  estado_encuestas";
-      $resultado31=$conexion ->query($consulta31);
-      $si31=$resultado31 -> fetch();
-      
-      if($si31["avanzando"]==1){
-      
         $coincidencia=0;
         $a=$_SESSION['id_usuario'];
         
-        $consulta= "SELECT * FROM trabajos_empleados";
+        $consulta= "SELECT * FROM trabajos_empleados WHERE id_empleado = '$a'";
         $resultado= $conexion ->query ($consulta);
+
+        $cuenta = $resultado ->rowCount();
+
+        if($cuenta>0){
         
         while ($si = $resultado -> fetch()){
-          
-          if($si["id_empleado"]==$a){
             
             $pepa=$si["id_trabajo"];
             
@@ -79,14 +74,14 @@ echo'<body style="background: linear-gradient(to right, #fff, '.$a.')">';
                     <input id="5" type="radio" name="trabajo" value="'.$si1["id"].'" required/> '.$c.'</a><br><br>';
                     echo '<input type="submit" class="enviar">';
             }
-            else{
+            if($coincidencia==0){
           echo'<p>No Hay Trabajos Disponibles</p>';
         }
         }
-       
-        
+       }
+      else{
+        echo'<p>No Te Encuentras Participando En Ningun Trabajo</p>';
       }
-    }
       ?>
     </div>
   </div>

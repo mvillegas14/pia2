@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2021 a las 05:34:11
+-- Tiempo de generación: 02-12-2021 a las 07:55:03
 -- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.11
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,6 +56,14 @@ CREATE TABLE `coevaluacion` (
   `resultado_co` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `coevaluacion`
+--
+
+INSERT INTO `coevaluacion` (`id`, `id_evaluado`, `id_evaluador`, `resultado_co`) VALUES
+(3, 2, 5, 7),
+(4, 2, 3, 28);
+
 -- --------------------------------------------------------
 
 --
@@ -77,13 +85,10 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `password`, `usuario`, `id_cargo`, `admin`) VALUES
-(1, 'Das', 'Art', '123', 'Das1', 1, 1),
-(2, 'tata', 'rar', '123', 'tata2', 2, 0),
-(3, 'Wendy', 'Benitez', '1234', 'Wendy3', 3, 0),
-(4, 'sar', 'ras', '123', 'sar4', 1, 0),
-(5, 'tars', 'tars', '123', 'tars5', 1, 0),
-(6, 'sarc', 'sarc', '123', 'sarc6', 1, 0),
-(7, 'rasd', 'rasd', '123', 'rasd7', 1, 0);
+(1, 'Das', 'art', '123', 'Das1', 1, 1),
+(2, 'Wendy', 'Benitez', '1234', 'Wendy2', 1, 0),
+(3, 'Miguel', 'Villegas', '123', 'Miguel3', 1, 0),
+(5, 'rat', 'das', '123', 'rat5', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -112,8 +117,8 @@ INSERT INTO `estado_encuestas` (`avanzando`, `estamos`, `coevaluacion`) VALUES
 
 CREATE TABLE `resultados` (
   `id_respuestas` int(11) NOT NULL,
-  `id_trabajador` int(11) NOT NULL,
-  `resultado` varchar(25) DEFAULT '1',
+  `id_trabajador` int(11) DEFAULT NULL,
+  `resultado` varchar(25) DEFAULT '...',
   `solved` tinyint(1) NOT NULL DEFAULT 0,
   `solved_enfocados` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -123,12 +128,10 @@ CREATE TABLE `resultados` (
 --
 
 INSERT INTO `resultados` (`id_respuestas`, `id_trabajador`, `resultado`, `solved`, `solved_enfocados`) VALUES
-(1, 2, '0', 0, 0),
-(2, 3, '28', 0, 0),
-(3, 4, '28', 0, 0),
-(4, 5, '0', 0, 0),
-(5, 6, '28', 1, 0),
-(6, 7, '12.5', 1, 1);
+(1, 2, '27.671875', 0, 0),
+(4, 3, '20', 0, 0),
+(5, 4, '28', 0, 0),
+(6, 5, '...', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -147,7 +150,10 @@ CREATE TABLE `trabajos_empleados` (
 --
 
 INSERT INTO `trabajos_empleados` (`id`, `id_trabajo`, `id_empleado`) VALUES
-(1, 2, 3);
+(1, 1, 2),
+(3, 7, 2),
+(4, 7, 5),
+(5, 7, 3);
 
 -- --------------------------------------------------------
 
@@ -173,8 +179,10 @@ INSERT INTO `trabajos_equipo` (`id`, `trabajo`, `descripcion`, `id_cargo_necesar
 (1, 'Busqueda', 'Deda', 1, 13, 0, '2021-10-02'),
 (2, 'Minar', 'si', 3, 13, 1, '2021-10-26'),
 (3, 'Seguimiento de cuenta', 'Pelar zapatos', 2, 8, 1, '2021-11-07'),
-(4, 'sdadas', 'adsasdasdsa', 1, 13, 0, '2021-11-08'),
-(5, 'dasdas', 'dasdasda', 1, 13, 0, '0000-00-00');
+(4, 'sdadas', 'adsasdasdsa', 1, 13, 1, '2021-11-08'),
+(5, 'dasdas', 'dasdasda', 1, 13, 0, '0000-00-00'),
+(7, 'si', 'si', 1, 8, 0, '2021-12-01'),
+(9, '', '', 1, NULL, 1, '0000-00-00');
 
 --
 -- Índices para tablas volcadas
@@ -230,13 +238,13 @@ ALTER TABLE `cargos`
 -- AUTO_INCREMENT de la tabla `coevaluacion`
 --
 ALTER TABLE `coevaluacion`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `resultados`
@@ -248,13 +256,13 @@ ALTER TABLE `resultados`
 -- AUTO_INCREMENT de la tabla `trabajos_empleados`
 --
 ALTER TABLE `trabajos_empleados`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `trabajos_equipo`
 --
 ALTER TABLE `trabajos_equipo`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

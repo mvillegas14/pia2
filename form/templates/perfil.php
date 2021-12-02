@@ -51,31 +51,36 @@ echo'<body style="background: linear-gradient(to right, #fff, '.$a.')">';
       <?php
       require_once "../../php/conexion.php";
   $id=$_SESSION["id_usuario"]; 
+  $dataco=0;
 
 $cnslt2="SELECT * FROM coevaluacion WHERE id_evaluado='$id'";
 $rslt2=$conexion -> query($cnslt2);
-$data=$rslt2 -> fetch();
-
 $cuenta = $rslt2 ->rowCount();
-if($cuenta>1){ 
 
-    if ($data['resultado_co']>6 && $data['resultado_co'] <= 7 ){
+while($data=$rslt2 -> fetch()){
+  $dataco=($data['resultado_co']+$dataco);
+}
+
+if($cuenta>=1){ 
+  $dataco=($dataco/$cuenta);
+
+    if ($dataco>6 && $dataco <= 7 ){
     $cascon="'../../img/cascorojo.png'";
     
   } 
-  if ($data['resultado_co'] >=8 && $data['resultado_co'] <= 13){
+  if ($dataco >=8 && $dataco <= 13){
     $cascon="'../../img/cascoamarillo.png'";
     
   }
-  if ($data['resultado_co'] > 13 && $data['resultado_co'] <= 19){
+  if ($dataco > 13 && $dataco <= 19){
     $cascon="'../../img/cascoazul.png'";
     
   }
-  if ($data['resultado_co'] > 19 && $data['resultado_co'] <= 25){
+  if ($dataco > 19 && $dataco <= 25){
     $cascon="'../../img/cascoceleste.png'";
     
   } 
-  if ($data['resultado_co'] >25){
+  if ($dataco >25){
     $cascon="'../../img/cascoverde.png'";
     
   } 
@@ -100,7 +105,7 @@ else{
       $resultado1 = $conexion -> query ($consulta_2);
       $cont = $resultado1 -> fetch();
       echo'<p>'.$cont["nombre_cargo"].'</p>';
-      echo '<h2>Casco Coevaluacion  </h2>
+      echo '<h2>Casco Promedio Coevaluacion  </h2>
       <img src='.$cascon.' class="icono">';
         echo '
     <h2>Usuario</h2><p >'.$si["usuario"].'</p>';
